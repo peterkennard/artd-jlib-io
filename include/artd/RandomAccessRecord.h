@@ -12,8 +12,8 @@ class ARTD_API_JLIB_IO RandomAccessRecord
 {
 public:
 
-	virtual InputStream *	getInputStream() = 0;
-	virtual OutputStream *	getOutputStream() = 0;
+	virtual ObjectPtr<InputStream> getInputStream() = 0;
+	virtual ObjectPtr<OutputStream> getOutputStream() = 0;
 
 	// returns < 0 if error
 	virtual int64_t	length() = 0;

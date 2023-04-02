@@ -24,8 +24,6 @@ class ARTD_API_JLIB_IO ByteArrayInputStream
     }
 
 public:
-	
-	ARTD_OBJECT_DECL
 
 	ByteArrayInputStream() {
         clear();

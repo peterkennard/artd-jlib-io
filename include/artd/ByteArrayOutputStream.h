@@ -44,8 +44,6 @@ class ARTD_API_JLIB_IO ByteArrayOutputStream
 	}
 public:
 
-	ARTD_OBJECT_DECL
-
     ByteArrayOutputStream(void *buffer, size_t size) {
         buff_ = (uint8_t *)buffer;
         max_ = buff_ + size;

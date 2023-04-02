@@ -47,8 +47,6 @@ protected:
 
 public:
 
-	ARTD_OBJECT_DECL
-
 	explicit StringReader(const wchar_t *str);
 	StringReader(const char *str);
 	StringReader(RcWString str);

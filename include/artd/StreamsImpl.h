@@ -81,8 +81,6 @@ class ARTD_API_JLIB_IO InputStreamImpl
 	, protected StreamBaseImpl
 {
 public:
-	ARTD_OBJECT_DECL   
-
 	// simple open for reading
 	static ObjectPtr<InputStreamImpl> open(StringArg path);
 
@@ -102,8 +100,6 @@ class ARTD_API_JLIB_IO OutputStreamImpl
 	, protected StreamBaseImpl
 {
 public:
-	ARTD_OBJECT_DECL
-
 	// simple open for reading
 	
 	static ObjectPtr<OutputStreamImpl> open(StringArg path, int flags = 0);
@@ -145,9 +141,9 @@ public:
 	ptrdiff_t       write(const void *buf, ptrdiff_t len);
 	int             flush();
 
-	// Random AccessFile methods
-	InputStream *getInputStream() { return(this); }
-	OutputStream *getOutputStream() { return(this); }
+	// Random AccessFile methods note these pointers reference this class
+	ObjectPtr<InputStream> getInputStream() { return(InputStream::sharedFromThis((InputStream*)this)); }
+	ObjectPtr<OutputStream> getOutputStream() { return (OutputStream::sharedFromThis((OutputStream*)this)); } 
 	void *	getFD() { return(void*)(size_t)(hfile_); }
 	int64_t length();
 	int		setLength(int64_t newlength);

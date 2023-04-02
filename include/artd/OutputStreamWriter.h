@@ -39,8 +39,6 @@ protected:
 	void *reserved_[3];
 public:
 
-	ARTD_OBJECT_DECL
-
 	// us-ascii, utf-8, iso-8859-1 default to "utf-8"
 	OutputStreamWriter(ObjectPtr<OutputStream> os, const char *charset=0);
 	~OutputStreamWriter();
