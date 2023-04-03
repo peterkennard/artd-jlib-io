@@ -406,7 +406,7 @@ ARTD_END
 #endif
 
 #ifndef ARTD_IOS
-	#include <sys/io.h>
+	#include <sys/uio.h>
 #endif
 
 #include <sys/fcntl.h>
@@ -483,13 +483,15 @@ inline int StreamBaseImpl::doFlush()
 	return(0);
 }
 
-InputStreamImpl *InputStreamImpl::open(StringArg path)
+
+ObjectPtr<InputStreamImpl>
+InputStreamImpl::open(StringArg path)
 {
 	int file;
-	file = ::open(path,O_RDONLY);
+	file = ::open(path.c_str(),O_RDONLY);
 	if(file <= 0)
 		return(0);
-	return(new InputStreamImpl(file,fOwnsHandle));
+	return(ObjectBase::make<InputStreamImpl>(file,fOwnsHandle));
 }
 InputStreamImpl::InputStreamImpl(int hfile, int flags)
 {
@@ -534,10 +536,10 @@ OutputStreamImpl::open(StringArg path, int flags)
 	fmode |= O_CREAT;
 	if (flags & fOPEN_APPEND)
 		fmode |= O_APPEND;
-	file = ::open(path,fmode,0666);
+	file = ::open(path.c_str(),fmode,0666);
 	if(file <= 0)
 		return(0);
-	return(ObjectBase::make<OutputStreamImpl(file,fOwnsHandle));
+	return(ObjectBase::make<OutputStreamImpl>(file,fOwnsHandle));
 }
 unsigned int OutputStreamImpl::getFlags(unsigned int which)
 {
@@ -565,7 +567,7 @@ int OutputStreamImpl::flush()
 }
 
 
-RandomAccessFileImpl *RandomAccessFileImpl::open(StringArg path, const char *mode)
+ObjectPtr<RandomAccessFileImpl> RandomAccessFileImpl::open(StringArg path, const char *mode)
 {
 	int file;
 	if(mode[0] != 'r') {
@@ -579,10 +581,10 @@ RandomAccessFileImpl *RandomAccessFileImpl::open(StringArg path, const char *mod
 	} else {
 		fmode |= O_RDONLY;
 	}
-	file = ::open(path,fmode);
+	file = ::open(path.c_str(),fmode);
 	if(file <= 0)
 		return(0);
-	return(new RandomAccessFileImpl(file,fOwnsHandle));
+	return(ObjectBase::make<RandomAccessFileImpl>(file,fOwnsHandle));
 }
 RandomAccessFileImpl::RandomAccessFileImpl(int hfile, int flags)
 {

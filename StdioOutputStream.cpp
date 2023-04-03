@@ -5,7 +5,7 @@
 #else
   #include <unistd.h>
   #ifndef ARTD_IOS
-	#include <sys/io.h>
+	#include <sys/uio.h>
   #endif
 #endif
 
