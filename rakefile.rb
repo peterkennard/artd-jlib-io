@@ -19,6 +19,7 @@ Rakish::CppProject.new(
 	if(false && ENV['EMSDK'])
 		sourcesList = [
             'Chunker.cpp',
+            'JPath.cpp',
             'UnChunker.cpp',
             'ByteArrayInputStream.cpp',
             'ByteArrayOutputStream.cpp',
@@ -37,6 +38,7 @@ Rakish::CppProject.new(
             'InputStream.cpp',
             'InputStreamReader.cpp',
             'jlib_io.cpp',
+            'JPath.cpp',
             'OutputStream.cpp',
             'OutputStreamWriter.cpp',
             'PosixStreams.cpp',
