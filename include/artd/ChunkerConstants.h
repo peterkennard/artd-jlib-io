@@ -270,7 +270,7 @@ public:
 		static void appendIndent(TextWriter* w, int indent, int level);
 
 		ARTD_ALWAYS_INLINE const char*getTypeName(int chunkType) const {
-			if ((chunkType & 0x0FF) < ARTD_ARRAY_SIZE(typeStrings_)) {
+			if ((chunkType & 0x0FF) < ARTD_ARRAY_LENGTH(typeStrings_)) {
 				return(typeStrings_[chunkType]);
 			}
 			return("Unknown"); //  +chunkType);
