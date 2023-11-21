@@ -190,7 +190,7 @@ ObjectPtr<InputStreamImpl> InputStreamImpl::open(StringArg path)
 							 FILE_ATTRIBUTE_NORMAL,
 							 NULL);
 	if(hfile != INVALID_HANDLE_VALUE) {
-		return(ObjectBase::make<InputStreamImpl>(hfile,fOwnsHandle));
+		return(ObjectPtr<InputStreamImpl>::make(hfile,fOwnsHandle));
 	}
 	return(0);
 }
@@ -249,7 +249,7 @@ OutputStreamImpl::open(StringArg path, int flags)
 		if(flags & fOPEN_APPEND) {
 			::SetFilePointer(hfile,0,0,FILE_END);
 		}
-		return(ObjectBase::make<OutputStreamImpl>(hfile,fOwnsHandle));
+		return(ObjectPtr<OutputStreamImpl>::make(hfile,fOwnsHandle));
 	}
 	return(0);
 }
@@ -299,7 +299,7 @@ ObjectPtr<RandomAccessFileImpl> RandomAccessFileImpl::open(StringArg path, const
 							 FILE_ATTRIBUTE_NORMAL,
 							 NULL);
 	if(hfile != INVALID_HANDLE_VALUE) {
-		return(ObjectBase::make<RandomAccessFileImpl>(hfile,fOwnsHandle));
+		return(ObjectPtr<RandomAccessFileImpl>::make(hfile,fOwnsHandle));
 	}
 	return(nullptr);
 }
@@ -491,7 +491,7 @@ InputStreamImpl::open(StringArg path)
 	file = ::open(path.c_str(),O_RDONLY);
 	if(file <= 0)
 		return(0);
-	return(ObjectBase::make<InputStreamImpl>(file,fOwnsHandle));
+	return(ObjectPtr<InputStreamImpl>::make(file,fOwnsHandle));
 }
 InputStreamImpl::InputStreamImpl(int hfile, int flags)
 {
@@ -539,7 +539,7 @@ OutputStreamImpl::open(StringArg path, int flags)
 	file = ::open(path.c_str(),fmode,0666);
 	if(file <= 0)
 		return(0);
-	return(ObjectBase::make<OutputStreamImpl>(file,fOwnsHandle));
+	return(ObjectPtr<OutputStreamImpl>::make(file,fOwnsHandle));
 }
 unsigned int OutputStreamImpl::getFlags(unsigned int which)
 {
@@ -584,7 +584,7 @@ ObjectPtr<RandomAccessFileImpl> RandomAccessFileImpl::open(StringArg path, const
 	file = ::open(path.c_str(),fmode);
 	if(file <= 0)
 		return(0);
-	return(ObjectBase::make<RandomAccessFileImpl>(file,fOwnsHandle));
+	return(ObjectPtr<RandomAccessFileImpl>::make(file,fOwnsHandle));
 }
 RandomAccessFileImpl::RandomAccessFileImpl(int hfile, int flags)
 {
