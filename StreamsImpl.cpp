@@ -462,7 +462,7 @@ inline ptrdiff_t StreamBaseImpl::doRead(void *b, ptrdiff_t len)
 {
 	for(;;)
 	{
-		int ret = ::read(hfile_,b,(int)len);
+		ptrdiff_t ret = ::read(hfile_,b,(int)len);
 		if(ret <= 0) {
 			return(-1); // error ?
 		}
