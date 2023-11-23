@@ -18,11 +18,11 @@ public:
 	// returns < 0 if error
 	virtual int64_t	length() = 0;
 	// returns < 0 if error
-	virtual int		setLength(int64_t newlength) = 0;
+	virtual int64_t		setLength(int64_t newlength) = 0;
 	// returns < 0 if error
-	virtual int		seek(int64_t absoluteByteOffset) = 0;
+	virtual int64_t		seek(int64_t absoluteByteOffset) = 0;
 	// returns < 0 if error
-	virtual int		skipBytes(int64_t numBytes) = 0;
+	virtual int64_t		skipBytes(int64_t numBytes) = 0;
 };
 
 ARTD_END

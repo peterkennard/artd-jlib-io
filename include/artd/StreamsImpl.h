@@ -146,9 +146,9 @@ public:
 	ObjectPtr<OutputStream> getOutputStream() { return (OutputStream::sharedFromThis((OutputStream*)this)); } 
 	void *	getFD() { return(void*)(size_t)(hfile_); }
 	int64_t length();
-	int		setLength(int64_t newlength);
-	int		seek(int64_t absoluteByteOffset);
-	int		skipBytes(int64_t numBytes);	
+	int64_t		setLength(int64_t newlength);
+	int64_t		seek(int64_t absoluteByteOffset);
+	int64_t		skipBytes(int64_t numBytes);
 	int64_t getFilePointer();
 };
 

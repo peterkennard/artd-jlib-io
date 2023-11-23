@@ -647,17 +647,17 @@ RandomAccessFileImpl::length()
 {
 	return(lseek(hfile_,0,SEEK_END));
 }
-int
+int64_t
 RandomAccessFileImpl::setLength(int64_t newlength)
 {
 	return(ftruncate(hfile_, newlength));
 }
-int
+int64_t
 RandomAccessFileImpl::seek(int64_t absoluteByteOffset)
 {
 	return(lseek(hfile_,absoluteByteOffset,SEEK_SET));
 }
-int
+int64_t
 RandomAccessFileImpl::skipBytes(int64_t numBytes)
 {
 	return(doSkip(numBytes));
